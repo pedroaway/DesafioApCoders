@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from app.forms import PessoasForm, UnidadesForm
 
 
@@ -21,4 +21,15 @@ def uniForm(request):
     data['uniForm'] = UnidadesForm()
     return render(request, "uniForm.html", data)
 
+def criarPessoas(request):
+    form = PessoasForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        return redirect('home')
+
+def criarUnidades(request):
+    form = UnidadesForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        return redirect('home')
 
