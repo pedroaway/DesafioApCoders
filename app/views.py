@@ -1,6 +1,5 @@
 from django.shortcuts import render
-
-# Create your views here.
+from app.forms import PessoasForm, UnidadesForm
 
 
 def home(request):
@@ -11,4 +10,15 @@ def inquilinos(request):
 
 def unidades(request):
     return render(request, "unidades.html")
+
+def inqForm(request):
+    data = { }
+    data['inqForm'] = PessoasForm()
+    return render(request, "inqForm.html", data)
+
+def uniForm(request):
+    data = { }
+    data['uniForm'] = UnidadesForm()
+    return render(request, "uniForm.html", data)
+
 
