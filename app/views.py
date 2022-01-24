@@ -1,23 +1,27 @@
 from django.shortcuts import render, redirect
 from app.forms import PessoasForm, UnidadesForm
-
+from app.models import Unidades, Pessoas
 
 def home(request):
     return render(request, "index.html")
 
 def inquilinos(request):
-    return render(request, "inquilinos.html")
+    data = {}
+    data['db'] = Pessoas.objects.all()
+    return render(request, "inquilinos.html", data)
 
 def unidades(request):
-    return render(request, "unidades.html")
+    data = {}
+    data['dp'] = Unidades.objects.all()
+    return render(request, "unidades.html", data)
 
 def inqForm(request):
-    data = { }
+    data = {}
     data['inqForm'] = PessoasForm()
     return render(request, "inqForm.html", data)
 
 def uniForm(request):
-    data = { }
+    data = {}
     data['uniForm'] = UnidadesForm()
     return render(request, "uniForm.html", data)
 
